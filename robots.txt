@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow redirect paths
+Disallow: /frontend/
+Disallow: /frontend/build/
+
+Sitemap: https://hashenruwanpura.com/sitemap.xml
