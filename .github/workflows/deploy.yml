@@ -41,9 +41,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
         
-      - name: Copy CNAME file
+      - name: Copy CNAME and .nojekyll files
         run: |
           cp CNAME frontend/build/
+          touch frontend/build/.nojekyll
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
