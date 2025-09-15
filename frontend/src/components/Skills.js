@@ -34,7 +34,7 @@ const Skills = () => {
   ];
 
   // Empty certifications array as they are yet to be completed
-  const certifications = [];
+  // const certifications = [];
 
   useEffect(() => {
     if (inView && activeTab === 'technical') {
@@ -46,7 +46,7 @@ const Skills = () => {
         }
       });
     }
-  }, [inView, activeTab]);
+  }, [inView, activeTab, technicalSkills]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);

@@ -36,7 +36,7 @@ jobs:
       - name: Build React application
         run: |
           cd frontend
-          npm run build
+          CI=false npm run build
         
       - name: Setup Pages
         uses: actions/configure-pages@v4

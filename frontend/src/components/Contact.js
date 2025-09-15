@@ -148,7 +148,7 @@ const Contact = () => {
                     <i className="fab fa-github"></i>
                   </a>
                   <a 
-                    href="#" 
+                    href="https://linkedin.com/in/hashenruwanpura" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link social-link-linkedin"
@@ -156,7 +156,7 @@ const Contact = () => {
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                   <a 
-                    href="#" 
+                    href="mailto:hashen@example.com" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link social-link-twitter"
