@@ -45,6 +45,12 @@ jobs:
         run: |
           cp CNAME frontend/build/
           touch frontend/build/.nojekyll
+          # Create a redirection at the problematic path
+          mkdir -p frontend/build/frontend/build
+          cp frontend/build/redirect.html frontend/build/frontend/build/index.html
+          # Also add redirection for other potential paths
+          mkdir -p frontend/build/frontend
+          cp frontend/build/redirect.html frontend/build/frontend/index.html
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

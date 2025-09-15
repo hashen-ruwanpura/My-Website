@@ -4,33 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hashen Ruwanpura - Redirecting...</title>
-    <!-- This is just a placeholder. The actual site content will be deployed from the frontend/build directory -->
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            background-color: #f5f5f5;
+    <title>Hashen Ruwanpura - Portfolio</title>
+    <script>
+        // Check if we're at a wrong path that needs redirection
+        const path = window.location.pathname;
+        if (path.includes('/frontend/build/') || path.includes('/frontend/')) {
+            window.location.href = '/';
         }
-        .container {
-            max-width: 600px;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Hashen Ruwanpura</h1>
-        <p>Cybersecurity Professional</p>
-        <p>Site is loading, please wait...</p>
-    </div>
+    <!-- This page will never actually be seen as it is replaced by the React build output -->
+    <h1>Hashen Ruwanpura</h1>
+    <p>If you're seeing this page, please go to <a href="https://hashenruwanpura.com">the homepage</a>.</p>
 </body>
 </html>
