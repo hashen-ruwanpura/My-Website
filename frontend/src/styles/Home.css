@@ -1,0 +1,399 @@
+.home {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home-content {
+  color: var(--white);
+  z-index: 1;
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+}
+
+.home-subtitle::before {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 2px;
+  background-color: var(--primary-color);
+  margin-right: 15px;
+}
+
+.home-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.home-title span {
+  color: var(--primary-color);
+}
+
+.home-description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  opacity: 0.9;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.terminal {
+  background-color: var(--terminal-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  font-family: 'Courier New', monospace;
+  color: var(--terminal-text);
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.terminal:hover .terminal-dot {
+  transform: scale(1.1);
+}
+
+.terminal-dot.red {
+  background-color: #ff5f56;
+}
+
+.terminal-dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.terminal-dot.green {
+  background-color: #27c93f;
+}
+
+.terminal-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  font-weight: 500;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.terminal-content {
+  line-height: 1.6;
+  padding: 0.5rem 0;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  font-size: 0.95rem;
+}
+
+.terminal-session {
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-line {
+  display: flex;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.terminal-prompt {
+  color: #4caf50;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.terminal-command {
+  white-space: pre-wrap;
+  word-break: break-all;
+  position: relative;
+}
+
+.terminal-output {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: #e0e0e0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  position: relative;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 1rem;
+  border-left: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.terminal-output.show {
+  opacity: 1;
+}
+
+.typed-cursor {
+  opacity: 1;
+  animation: blink 0.7s infinite;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-image {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.home-image img {
+  max-width: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.home-shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--background);
+  clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 100%);
+}
+
+/* Social icons on the side */
+.home-social {
+  position: absolute;
+  left: 2rem;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.home-social-icon {
+  font-size: 1.2rem;
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.home-social-icon:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+/* Scroll down indicator */
+.scroll-down {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--white);
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.scroll-down-arrow {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--white);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.scroll-down-arrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--white);
+  border-radius: 50%;
+  animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .home-container {
+    grid-template-columns: 1fr;
+  }
+
+  .home-content {
+    text-align: center;
+    order: 2;
+  }
+
+  .home-subtitle::before {
+    display: none;
+  }
+
+  .home-description {
+    margin: 0 auto 2rem;
+  }
+
+  .home-buttons {
+    justify-content: center;
+  }
+
+  .home-image {
+    order: 1;
+    margin-top: 5rem;
+  }
+
+  .home-social {
+    display: none;
+  }
+
+  .scroll-down {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding-top: 5rem;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .home-title {
+    font-size: 2.5rem;
+  }
+
+  .terminal {
+    height: 280px;
+    padding: 1rem;
+  }
+  
+  .terminal-content {
+    font-size: 0.85rem;
+  }
+  
+  .terminal-dots {
+    gap: 6px;
+  }
+  
+  .terminal-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .terminal-title {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal {
+    height: 250px;
+  }
+  
+  .terminal-content {
+    font-size: 0.8rem;
+  }
+  
+  .terminal-prompt {
+    font-size: 0.8rem;
+  }
+  
+  .terminal-command {
+    font-size: 0.8rem;
+  }
+}
