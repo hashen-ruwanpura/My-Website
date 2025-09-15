@@ -46,11 +46,6 @@ jobs:
           # Copy CNAME and .nojekyll to the build directory
           cp CNAME frontend/build/
           touch frontend/build/.nojekyll
-          # Create redirection at the problematic paths to prevent old cached URLs
-          mkdir -p frontend/build/frontend/build
-          cp clear-cache-redirect.html frontend/build/frontend/build/index.html
-          mkdir -p frontend/build/frontend
-          cp clear-cache-redirect.html frontend/build/frontend/index.html
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
