@@ -41,20 +41,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
         
-      - name: Copy CNAME, 404 and .nojekyll files
+      - name: Create temporary deployment structure
         run: |
+          # Create a simple deployment structure
+          mkdir -p frontend/build
+          cp simple-index.html frontend/build/index.html
           cp CNAME frontend/build/
           touch frontend/build/.nojekyll
-          # Ensure 404.html is at the root for GitHub Pages custom 404 handling
-          cp frontend/build/404.html frontend/build/
-          # Create a strong redirection at the problematic path
+          # Create redirection at the problematic path
           mkdir -p frontend/build/frontend/build
           cp clear-cache-redirect.html frontend/build/frontend/build/index.html
-          # Also add redirection for other potential paths
           mkdir -p frontend/build/frontend
           cp clear-cache-redirect.html frontend/build/frontend/index.html
-          # Add a version specifically for the path in the browser
-          cp clear-cache-redirect.html frontend/build/frontend/build.html
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
