@@ -33,23 +33,13 @@ jobs:
           cd frontend
           npm ci || npm install
         
-      - name: Build
+      - name: Build React application
         run: |
           cd frontend
           npm run build
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
-        
-      - name: Install dependencies
-        run: |
-          cd frontend
-          npm ci || npm install
-        
-      - name: Build React application
-        run: |
-          cd frontend
-          npm run build
         
       - name: Copy CNAME and setup GitHub Pages files
         run: |
