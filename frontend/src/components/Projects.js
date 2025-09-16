@@ -15,7 +15,7 @@ const Projects = () => {
       title: "LogSentry - SIEM Tool",
       description: "A comprehensive SIEM solution that provides advanced log analysis and threat detection capabilities for enterprise environments. Designed to detect suspicious activities and security threats in real-time.",
       technologies: ["Python", "ElasticSearch", "Kibana", "Machine Learning"],
-      githubLink: "https://github.com/hashenruwanpura/LogSentry-PUSL3190.git",
+      githubLink: "https://github.com/hashen-ruwanpura/LogSentry-PUSL3190.git",
       demoLink: "",
       features: [
         "Real-time log ingestion and analysis",
