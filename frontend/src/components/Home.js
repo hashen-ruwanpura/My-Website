@@ -164,7 +164,7 @@ const Home = () => {
         <a href="https://linkedin.com/in/hashen-ruwanpura-9813aa28a" className="home-social-icon" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-linkedin-in"></i>
         </a>
-        <a href="https://github.com/hashenruwanpura" className="home-social-icon" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/hashen-ruwanpura" className="home-social-icon" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-github"></i>
         </a>
         <a href="https://x.com/HashenRuwanpur3" className="home-social-icon" target="_blank" rel="noopener noreferrer">

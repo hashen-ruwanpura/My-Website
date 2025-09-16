@@ -179,7 +179,7 @@ const Contact = () => {
                 <h3>Social Profiles</h3>
                 <div className="social-links">
                   <a 
-                    href="https://github.com/hashenruwanpura" 
+                    href="https://github.com/hashen-ruwanpura" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link social-link-github"

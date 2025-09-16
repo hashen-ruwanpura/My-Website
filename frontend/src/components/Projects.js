@@ -147,7 +147,7 @@ const Projects = () => {
 
         <div className="view-more-container">
           <a 
-            href="https://github.com/hashenruwanpura" 
+            href="https://github.com/hashen-ruwanpura" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="view-more-btn"
