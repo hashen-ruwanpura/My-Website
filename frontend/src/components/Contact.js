@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import axios from 'axios';
+import emailjs from '@emailjs/browser';
 import '../styles/Contact.css';
 
 const Contact = () => {
@@ -70,12 +70,25 @@ const Contact = () => {
     setSubmitStatus(null);
     
     try {
-      const response = await axios.post('http://localhost:8000/api/contact', formData);
+      // EmailJS configuration with your actual keys
+      const serviceId = 'service_wluslqc';
+      const templateId = 'template_03hwzki';
+      const publicKey = 'h7Q1UNYxMdB6yzNCc';
       
-      if (response.status === 200) {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Hashen Ruwanpura', // Your name
+      };
+      
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      if (result.status === 200) {
         setSubmitStatus({
           type: 'success',
-          message: 'Your message has been sent. Thank you!'
+          message: 'Your message has been sent successfully! Thank you for reaching out.'
         });
         
         // Reset form
@@ -91,7 +104,7 @@ const Contact = () => {
         type: 'error',
         message: 'Oops! Something went wrong. Please try again later.'
       });
-      console.error('Form submission error:', error);
+      console.error('Email sending error:', error);
     } finally {
       setIsSubmitting(false);
     }
