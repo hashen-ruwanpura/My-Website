@@ -187,7 +187,7 @@ const Contact = () => {
                     <i className="fab fa-github"></i>
                   </a>
                   <a 
-                    href="https://linkedin.com/in/hashenruwanpura" 
+                    href="https://linkedin.com/in/hashen-ruwanpura-9813aa28a" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link social-link-linkedin"
@@ -195,12 +195,20 @@ const Contact = () => {
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                   <a 
-                    href="mailto:hashen@example.com" 
+                    href="https://x.com/HashenRuwanpur3" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link social-link-twitter"
                   >
                     <i className="fab fa-twitter"></i>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/hashen.ruwanpura?igsh=dzgzbWhoaXhvN2V6&utm_source=qr" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link social-link-instagram"
+                  >
+                    <i className="fab fa-instagram"></i>
                   </a>
                 </div>
               </div>
