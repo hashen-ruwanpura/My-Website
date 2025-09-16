@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser';
@@ -9,6 +9,11 @@ const Contact = () => {
     threshold: 0.1,
     triggerOnce: true
   });
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init('h7Q1UNYxMdB6yzNCc');
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -69,21 +74,17 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
+    // EmailJS configuration with your actual keys
+    const serviceId = 'service_wluslqc';
+    const templateId = 'template_03hwzki';
+    
     try {
-      // EmailJS configuration with your actual keys
-      const serviceId = 'service_wluslqc';
-      const templateId = 'template_03hwzki';
-      const publicKey = 'h7Q1UNYxMdB6yzNCc';
+      console.log('Attempting to send email with:', { serviceId, templateId });
       
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Hashen Ruwanpura', // Your name
-      };
+      // Try using sendForm method instead
+      const result = await emailjs.sendForm(serviceId, templateId, formRef.current);
       
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('EmailJS result:', result);
       
       if (result.status === 200) {
         setSubmitStatus({
@@ -100,11 +101,45 @@ const Contact = () => {
         });
       }
     } catch (error) {
+      console.error('Detailed error:', error);
+      console.error('Error status:', error.status);
+      console.error('Error text:', error.text);
+      
+      // Try alternative method if sendForm fails
+      try {
+        console.log('Trying alternative send method...');
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: 'Hashen Ruwanpura',
+        };
+        
+        const result = await emailjs.send(serviceId, templateId, templateParams);
+        
+        if (result.status === 200) {
+          setSubmitStatus({
+            type: 'success',
+            message: 'Your message has been sent successfully! Thank you for reaching out.'
+          });
+          
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          });
+          return;
+        }
+      } catch (secondError) {
+        console.error('Second attempt failed:', secondError);
+      }
+      
       setSubmitStatus({
         type: 'error',
-        message: 'Oops! Something went wrong. Please try again later.'
+        message: `Failed to send message: ${error.text || error.message || 'Please check your EmailJS configuration'}`
       });
-      console.error('Email sending error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -195,27 +230,27 @@ const Contact = () => {
 
             <form ref={formRef} onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Your Name</label>
+                <label htmlFor="from_name">Your Name</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="name"
-                  name="name"
+                  id="from_name"
+                  name="from_name"
                   value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
                 />
                 {formErrors.name && <span className="field-error">{formErrors.name}</span>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Your Email</label>
+                <label htmlFor="from_email">Your Email</label>
                 <input
                   type="email"
                   className="form-control"
-                  id="email"
-                  name="email"
+                  id="from_email"
+                  name="from_email"
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
                 {formErrors.email && <span className="field-error">{formErrors.email}</span>}
               </div>
@@ -228,7 +263,7 @@ const Contact = () => {
                   id="subject"
                   name="subject"
                   value={formData.subject}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({...formData, subject: e.target.value})}
                 />
                 {formErrors.subject && <span className="field-error">{formErrors.subject}</span>}
               </div>
@@ -241,7 +276,7 @@ const Contact = () => {
                   name="message"
                   rows="5"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
                 ></textarea>
                 {formErrors.message && <span className="field-error">{formErrors.message}</span>}
               </div>
