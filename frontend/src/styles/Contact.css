@@ -120,6 +120,10 @@
   background-color: #1da1f2;
 }
 
+.social-link-instagram {
+  background-color: #e4405f;
+}
+
 .social-link:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
