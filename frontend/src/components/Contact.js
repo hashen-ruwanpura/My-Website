@@ -74,15 +74,27 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
-    // EmailJS configuration with your actual keys
-    const serviceId = 'service_wluslqc';
+    // EmailJS configuration with your updated service ID
+    const serviceId = 'service_6b9y0tx';
     const templateId = 'template_03hwzki';
+    const publicKey = 'h7Q1UNYxMdB6yzNCc';
     
     try {
       console.log('Attempting to send email with:', { serviceId, templateId });
       
-      // Try using sendForm method instead
-      const result = await emailjs.sendForm(serviceId, templateId, formRef.current);
+      // Use the send method with explicit public key
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Hashen Ruwanpura',
+        to_email: 'hashr.work@gmail.com', // Add recipient email explicitly
+      };
+      
+      console.log('Template params:', templateParams);
+      
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
       console.log('EmailJS result:', result);
       
@@ -105,40 +117,19 @@ const Contact = () => {
       console.error('Error status:', error.status);
       console.error('Error text:', error.text);
       
-      // Try alternative method if sendForm fails
-      try {
-        console.log('Trying alternative send method...');
-        const templateParams = {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_name: 'Hashen Ruwanpura',
-        };
-        
-        const result = await emailjs.send(serviceId, templateId, templateParams);
-        
-        if (result.status === 200) {
-          setSubmitStatus({
-            type: 'success',
-            message: 'Your message has been sent successfully! Thank you for reaching out.'
-          });
-          
-          setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-          });
-          return;
-        }
-      } catch (secondError) {
-        console.error('Second attempt failed:', secondError);
+      // Provide more specific error message
+      let errorMessage = 'Failed to send message. ';
+      if (error.text && error.text.includes('Gmail_API')) {
+        errorMessage += 'Gmail service needs to be reconfigured in EmailJS dashboard with proper authentication scopes.';
+      } else if (error.text && error.text.includes('authentication')) {
+        errorMessage += 'Email service authentication failed. Please check EmailJS configuration.';
+      } else {
+        errorMessage += error.text || error.message || 'Please try again later.';
       }
       
       setSubmitStatus({
         type: 'error',
-        message: `Failed to send message: ${error.text || error.message || 'Please check your EmailJS configuration'}`
+        message: errorMessage
       });
     } finally {
       setIsSubmitting(false);
