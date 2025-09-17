@@ -70,7 +70,7 @@ const About = () => {
             </div>
 
             <div className="about-buttons">
-              <a href="/cv.pdf" className="btn-primary" target="_blank" rel="noopener noreferrer">
+              <a href="https://drive.google.com/uc?export=download&id=1fdVyYF6o2iLKbd7vimQqgBJKFWcn8SCh" className="btn-primary" target="_blank" rel="noopener noreferrer">
                 <i className="fas fa-download"></i> Download CV
               </a>
               <a href="#contact" className="btn-secondary">
